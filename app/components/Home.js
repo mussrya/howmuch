@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import GetApp from '../helpers/AllApps';
 import SideMenu from '../components/SideMenu';
 import Calculations from '../helpers/Calculations';
+import Comma from '../helpers/Formatter';
 
 class MainBlock extends React.Component {
 
@@ -33,13 +34,18 @@ class MainBlock extends React.Component {
     {
         let view = null;
         let activeApp = false;
+        let viewingApp = false;
 
-        if(this.props.apps.length){
+        if (this.props.apps.length) {
             this.props.apps.map(
                 function (item, key)
                 {
-                    if(item.active){
-                        activeApp = item;
+                    if(item){
+                        if (typeof(item.active) !== 'undefined' && item.active) {
+                            activeApp = item;
+                        } else if (typeof(item.viewingApp) !== 'undefined' && item.viewingApp) {
+                            viewingApp = item;
+                        }
                     }
                 }
             );
@@ -47,6 +53,8 @@ class MainBlock extends React.Component {
 
         if (activeApp) {
             view = <EditApp app={activeApp} store={this.props.dispatch}/>;
+        } else if (viewingApp) {
+            view = <ViewApp app={viewingApp} store={this.props.dispatch}/>;
         } else {
             view = <MainView allApps={this.state.allApps} editAction={this.editApp.bind(this)}/>;
         }
@@ -82,7 +90,9 @@ var MainView = React.createClass(
                                         return <div key={index} className="col-4">
                                             <div className="entryBox" onClick={() => this.props.editAction(app)}>
                                                 <div className="appIcon text-center">
-                                                    <i className={"fa " + app.icon}></i>
+                                                    <div className="fa-container">
+                                                        <i className={"fa " + app.icon}></i>
+                                                    </div>
                                                     <h4 className="margin-top-10">{app.name}</h4>
                                                 </div>
                                             </div>
@@ -113,6 +123,7 @@ class EditApp extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSave = this.handleSave.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
     }
 
     handleChange(event)
@@ -124,9 +135,8 @@ class EditApp extends React.Component {
         }
     }
 
-    handleSave(event)
+    handleSave()
     {
-
         this.props.store(
             {
                 type: 'UPDATEAPP',
@@ -138,6 +148,13 @@ class EditApp extends React.Component {
                 active: false
             }
         );
+    }
+
+    handleKeyPress(event)
+    {
+        if (event.key === 'Enter') {
+            this.handleSave(event);
+        }
     }
 
     render()
@@ -163,7 +180,7 @@ class EditApp extends React.Component {
                     <div className="row">
                         <input name="cost" type="number" placeholder="Enter The Cost Per Month"
                                className="col-8 reducePadding"
-                               value={this.state.value} onChange={this.handleChange}/>
+                               value={this.state.value} onKeyPress={this.handleKeyPress} onChange={this.handleChange}/>
                     </div>
                     <div className="row">
                         <button type="button" className="btn btn-outline-primary margin-top-15"
@@ -172,6 +189,52 @@ class EditApp extends React.Component {
                         </button>
                     </div>
 
+                </div>
+            </div>
+        )
+    }
+}
+
+class ViewApp extends React.Component {
+    constructor(props)
+    {
+        super(props);
+        this.handleClose = this.handleClose.bind(this);
+    }
+
+    handleClose(){
+        let item = {};
+        item.type = 'VIEWALL';
+        this.props.store(
+            item
+        );
+    }
+
+    render()
+    {
+        let topMoney = Calculations(this.props.app);
+
+        return (
+            <div>
+                <h4 className="text-center muted padding-top-30">{this.props.app.title}
+                    <div onClick={() => this.handleClose()} className="closeBox">Close <i className="fa fa-close"> </i></div>
+                </h4>
+                <div className="paddedContainer">
+                    <div className="row">
+                        {
+                            topMoney.map(
+                                function (item, index)
+                                {
+                                    return <div className="col-6 text-center" key={index}>
+                                        <div className="whiteBox">
+                                            <h4 className="text-muted padding-top-15">{item.name}</h4>
+                                            <h1 className="h1--value">£{Comma(item.value)}</h1>
+                                        </div>
+                                    </div>
+                                }
+                            )
+                        }
+                    </div>
                 </div>
             </div>
         )

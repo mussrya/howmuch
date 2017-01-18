@@ -11,7 +11,8 @@ export default (state = [], action) =>
                     title: action.name,
                     cost: action.cost,
                     icon: action.icon,
-                    active: false
+                    active: false,
+                    viewingApp: false
                 }
             ];
             localStorage.setItem('howmuch', JSON.stringify(addState));
@@ -39,21 +40,14 @@ export default (state = [], action) =>
                     title: action.name,
                     cost: action.cost,
                     icon: action.icon,
-                    active: false
+                    active: false,
+                    viewingApp: true
                 }
             ];
             localStorage.setItem('howmuch', JSON.stringify(updatedApps));
             return updatedApps;
             break;
         case 'EDTIAPP':
-
-            let editingApp = state.filter(
-                function (obj)
-                {
-                    return obj.id === action.id;
-                }
-            );
-
             if(typeof(action.id)){
                 action.id = Uid();
             }
@@ -73,11 +67,53 @@ export default (state = [], action) =>
                     title: action.name,
                     cost: action.cost,
                     icon: action.icon,
-                    active: true
+                    active: true,
+                    viewingApp: true
                 }
             ];
             localStorage.setItem('howmuch', JSON.stringify(editApp));
             return editApp;
+            break;
+        case 'VIEWAPP':
+            if(typeof(action.id)){
+                action.id = Uid();
+            }
+
+            const removalAppUpdate = state.filter(
+                function (obj)
+                {
+                    return obj.id !== action.id;
+                }
+            );
+
+            let viewApp = [
+                ...removalAppUpdate,
+                {
+                    id: action.id,
+                    name: action.name,
+                    title: action.name,
+                    cost: action.cost,
+                    icon: action.icon,
+                    viewingApp: true
+                }
+            ];
+
+            localStorage.setItem('howmuch', JSON.stringify(viewApp));
+            return viewApp;
+            break;
+        case 'VIEWALL':
+            const allApps = state.map(function(item, index){
+                if(typeof(item.active) !== 'undefined'){
+                    item.active = false;
+                }
+
+                if(typeof(item.viewingApp) !== 'undefned'){
+                    item.viewingApp = false;
+                }
+
+                return item;
+            });
+            return allApps;
             break;
         default:
             return state

@@ -7,6 +7,7 @@ class SideMenu extends React.Component {
         super(props);
         this.removeApp.bind(this);
         this.editApp.bind(this);
+        this.viewApp.bind(this);
 
     }
 
@@ -20,10 +21,18 @@ class SideMenu extends React.Component {
 
     editApp(item)
     {
-        console.log(item);
         item.type = 'EDTIAPP';
         item.active = true;
         item.cost = parseInt(item.cost);
+        this.props.dispatch(
+            item
+        );
+    }
+
+    viewApp(item)
+    {
+        item.type = 'VIEWAPP';
+        item.viewingApp = true;
         this.props.dispatch(
             item
         );
@@ -37,21 +46,23 @@ class SideMenu extends React.Component {
                     <h4 className="text-center muted padding-top-30">Saved Outgoings</h4>
                     <div className="paddedContainer--10">
                         {
-                            this.props.apps.map(
-                                function (item, index)
-                                {
-                                    return <div className="appBlock row" key={index}>
-                                        <i className={"col-2 appIcon--border fa " + item.icon}> </i>
-                                        <h5 className="col-7 margin-top-15">{item.name} - (£{item.cost})</h5>
-                                        <div className="col-3 noPaddingLeftRight margin-top-15">
-                                            <i onClick={() => this.removeApp(item)}
-                                               className="pull-right removeItem fa fa-remove btn-circle btn-red"> </i>
-                                            <i onClick={() => this.editApp(item)}
-                                               className="pull-right editItem fa fa-pencil btn-circle btn-blue"> </i>
+                            (this.props.apps.length) ? this.props.apps.map(
+                                    function (item, index)
+                                    {
+                                        return <div className="appBlock row" key={index}>
+                                            <div className="col-2 noPadding"><i
+                                                className={"appIcon--border fa " + item.icon}> </i></div>
+                                            <h5 onClick={() => this.viewApp(item)}
+                                                className="col-7 margin-top-15">{item.name} - (£{item.cost})</h5>
+                                            <div className="col-3 noPaddingLeftRight margin-top-15">
+                                                <i onClick={() => this.removeApp(item)}
+                                                   className="pull-right removeItem fa fa-remove btn-circle btn-red"> </i>
+                                                <i onClick={() => this.editApp(item)}
+                                                   className="pull-right editItem fa fa-pencil btn-circle btn-blue"> </i>
+                                            </div>
                                         </div>
-                                    </div>
-                                }, this
-                            )
+                                    }, this
+                                ) : <h5 className="text-center margin-top-10 accent">No Apps Yet Added</h5>
                         }
                     </div>
                 </div>

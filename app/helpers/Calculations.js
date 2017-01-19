@@ -12,30 +12,39 @@ export default function (totalNumber)
             return a + b.cost;
         }
     } else {
-        if(typeof(totalNumber) !== 'undefined' && typeof(totalNumber.cost) !== 'undefined'){
+        if (typeof(totalNumber) !== 'undefined' && typeof(totalNumber.cost) !== 'undefined') {
             summedTotal = totalNumber.cost;
         }
-        else{
+        else {
             summedTotal = 0;
         }
     }
 
+    summedTotal = parseFloat(summedTotal).toFixed(1);
+
     let topMoney = [
         {
             name: '1 Month',
-            value: summedTotal
+            value: (parseFloat(summedTotal) % 1 != 0) ? parseFloat(summedTotal).toFixed(1) : parseFloat(
+                    summedTotal)
         },
         {
             name: '3 Months',
-            value: summedTotal * 3
+            value: (parseFloat(summedTotal * 3) % 1 != 0) ? parseFloat(summedTotal * 3).toFixed(1) : parseFloat(
+                    summedTotal * 3
+                )
         },
         {
             name: '1 Year',
-            value: summedTotal * 12
+            value: (parseFloat(summedTotal * 12) % 1 != 0) ? parseFloat(summedTotal * 12).toFixed(1) : parseFloat(
+                    summedTotal * 12
+                )
         },
         {
             name: '3 Years',
-            value: summedTotal * 36
+            value: (parseFloat(summedTotal * 36) % 1 != 0) ? parseFloat(summedTotal * 36).toFixed(1) : parseFloat(
+                    summedTotal * 36
+                )
         }
     ];
 

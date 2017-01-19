@@ -54,7 +54,11 @@ class SideMenu extends React.Component {
                                                 className={"appIcon--border fa " + item.icon}> </i></div>
                                             <div className="col-12 col-md-7 margin-top-15"><h5
                                                 onClick={() => this.viewApp(item)}>
-                                                {item.name} - (£{item.cost})
+                                                {item.title} - (
+                                                £{(parseFloat(item.cost) % 1 != 0) ?
+                                                parseFloat(item.cost).toFixed(1) :
+                                                parseFloat(item.cost)}
+                                                )
                                             </h5>
                                             </div>
                                             <div className="col-12 col-md-3 noPaddingLeftRight margin-top-15">

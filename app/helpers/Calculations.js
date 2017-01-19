@@ -1,19 +1,23 @@
-export default function(totalNumber){
+export default function (totalNumber)
+{
     let summedTotal;
-    if(totalNumber.length > 1){
+    if (totalNumber.length > 0) {
         summedTotal = totalNumber.reduce(add, 0);
 
-        function add(a, b) {
-            if(!b.cost || b.cost < 1){
+        function add(a, b)
+        {
+            if (!b.cost || b.cost < 1) {
                 b.cost = 0;
             }
             return a + b.cost;
         }
-    }else{
-        if(!totalNumber.cost || totalNumber.cost < 1){
-            totalNumber.cost = 0;
+    } else {
+        if(typeof(totalNumber) !== 'undefined' && typeof(totalNumber.cost) !== 'undefined'){
+            summedTotal = totalNumber.cost;
         }
-        summedTotal = totalNumber.cost;
+        else{
+            summedTotal = 0;
+        }
     }
 
     let topMoney = [

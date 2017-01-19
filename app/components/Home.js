@@ -40,7 +40,7 @@ class MainBlock extends React.Component {
             this.props.apps.map(
                 function (item, key)
                 {
-                    if(item){
+                    if (item) {
                         if (typeof(item.active) !== 'undefined' && item.active) {
                             activeApp = item;
                         } else if (typeof(item.viewingApp) !== 'undefined' && item.viewingApp) {
@@ -63,7 +63,7 @@ class MainBlock extends React.Component {
             <div>
                 <div className="row mainBlock">
                     <SideMenu />
-                    <div className="col-8">
+                    <div className="col-7 col-sm-8">
                         <div id="mainBlock" className="resetPadding row-fluid whiteBox">
                             {view}
                         </div>
@@ -87,7 +87,7 @@ var MainView = React.createClass(
                                 this.props.allApps.map(
                                     function (app, index)
                                     {
-                                        return <div key={index} className="col-4">
+                                        return <div key={index} className="col-12 col-sm-6 col-md-4">
                                             <div className="entryBox" onClick={() => this.props.editAction(app)}>
                                                 <div className="appIcon text-center">
                                                     <div className="fa-container">
@@ -171,15 +171,15 @@ class EditApp extends React.Component {
                         <h4>Title</h4>
                     </div>
                     <div className="row">
-                        <input name="title" placeholder="Enter A Title" className="col-8 reducePadding"
+                        <input name="title" placeholder="Expenditure Title" className="col-12 reducePadding"
                                value={this.state.title} onChange={this.handleChange}/>
                     </div>
                     <div className="row margin-top-15">
                         <h4>Cost Per Month</h4>
                     </div>
                     <div className="row">
-                        <input name="cost" type="number" placeholder="Enter The Cost Per Month"
-                               className="col-8 reducePadding"
+                        <input name="cost" type="number" placeholder="Cost Per Month"
+                               className="col-12 reducePadding"
                                value={this.state.value} onKeyPress={this.handleKeyPress} onChange={this.handleChange}/>
                     </div>
                     <div className="row">
@@ -202,7 +202,8 @@ class ViewApp extends React.Component {
         this.handleClose = this.handleClose.bind(this);
     }
 
-    handleClose(){
+    handleClose()
+    {
         let item = {};
         item.type = 'VIEWALL';
         this.props.store(
@@ -217,7 +218,8 @@ class ViewApp extends React.Component {
         return (
             <div>
                 <h4 className="text-center muted padding-top-30">{this.props.app.title}
-                    <div onClick={() => this.handleClose()} className="closeBox">Close <i className="fa fa-close"> </i></div>
+                    <div onClick={() => this.handleClose()} className="closeBox"><span
+                        className="hidden-xs-down">Close</span> <i className="fa fa-close"> </i></div>
                 </h4>
                 <div className="paddedContainer">
                     <div className="row">
@@ -225,10 +227,10 @@ class ViewApp extends React.Component {
                             topMoney.map(
                                 function (item, index)
                                 {
-                                    return <div className="col-6 text-center" key={index}>
+                                    return <div className="col-12 col-sm-6 col-md-3 text-center" key={index}>
                                         <div className="whiteBox">
-                                            <h4 className="text-muted padding-top-15">{item.name}</h4>
-                                            <h1 className="h1--value">£{Comma(item.value)}</h1>
+                                            <h5 className="text-muted padding-top-15">{item.name}</h5>
+                                            <h2 className="h1--value">£{Comma(item.value)}</h2>
                                         </div>
                                     </div>
                                 }

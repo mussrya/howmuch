@@ -22,10 +22,16 @@ module.exports = {
             {test: /\.css$/, exclude: /node_modules/, loader: "style-loader!css-loader"}
         ]
     },
-    plugins: [HTMLWebpackPluginConfig, new webpack.DefinePlugin({
-        'process.env': {
-            NODE_ENV: JSON.stringify('production')
+    plugins:[HtmlWebpackPlugin,
+    new webpack.DefinePlugin({
+        'process.env':{
+            'NODE_ENV': JSON.stringify('production')
         }
     }),
-        new webpack.optimize.UglifyJsPlugin()]
+    new webpack.optimize.UglifyJsPlugin({
+        compress:{
+            warnings: true
+        }
+    })
+]
 };

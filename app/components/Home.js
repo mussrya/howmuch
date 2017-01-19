@@ -80,14 +80,14 @@ var MainView = React.createClass(
         {
             return (
                 <div>
-                    <h4 className="text-center muted padding-top-30">Add Outgoing</h4>
+                    <h4 className="text-center boxHeading padding-top-15">Add Outgoing</h4>
                     <div className="paddedContainer">
                         <div className="row">
                             {
                                 this.props.allApps.map(
                                     function (app, index)
                                     {
-                                        return <div key={index} className="col-12 col-sm-6 col-md-4">
+                                        return <div key={index} className="col-12 col-sm-6 col-md-4 noMobilePadding">
                                             <div className="entryBox" onClick={() => this.props.editAction(app)}>
                                                 <div className="appIcon text-center">
                                                     <div className="fa-container">
@@ -161,7 +161,7 @@ class EditApp extends React.Component {
     {
         return (
             <div>
-                <h4 className="text-center muted padding-top-10">Add Outgoing</h4>
+                <h4 className="text-center padding-top-15 boxHeading">Add Outgoing</h4>
                 <div className="paddedContainer">
                     <div className="row">
                         <h4 className="muted">{this.props.app.name}</h4>
@@ -171,7 +171,8 @@ class EditApp extends React.Component {
                         <h4>Title</h4>
                     </div>
                     <div className="row">
-                        <input name="title" placeholder="Expenditure Title" className="col-12 reducePadding"
+                        <input autoComplete="off" name="title" placeholder="Expenditure Title"
+                               className="col-12 reducePadding"
                                value={this.state.title} onChange={this.handleChange}/>
                     </div>
                     <div className="row margin-top-15">
@@ -180,7 +181,8 @@ class EditApp extends React.Component {
                     <div className="row">
                         <input name="cost" type="number" placeholder="Cost Per Month"
                                className="col-12 reducePadding"
-                               value={this.state.value} onKeyPress={this.handleKeyPress} onChange={this.handleChange}/>
+                               value={this.state.value} onKeyPress={this.handleKeyPress} onChange={this.handleChange}
+                               autoComplete="off" />
                     </div>
                     <div className="row">
                         <button type="button" className="btn btn-outline-primary margin-top-15"
@@ -217,7 +219,7 @@ class ViewApp extends React.Component {
 
         return (
             <div>
-                <h4 className="text-center muted padding-top-30">{this.props.app.title}
+                <h4 className="boxHeading text-center padding-top-15">{this.props.app.title}
                     <div onClick={() => this.handleClose()} className="closeBox"><span
                         className="hidden-xs-down">Close</span> <i className="fa fa-close"> </i></div>
                 </h4>

@@ -43,14 +43,14 @@ class SideMenu extends React.Component {
         return (
             <div className="col-5 col-sm-4">
                 <div id="sideBlock" className="whiteBox resetPadding">
-                    <h4 className="text-center muted padding-top-30">Saved Outgoings</h4>
+                    <h4 className="boxHeading text-center padding-top-15">Saved Outgoings</h4>
                     <div className="paddedContainer--10">
                         {
                             (this.props.apps.length) ? this.props.apps.map(
                                     function (item, index)
                                     {
                                         return <div className="appBlock row" key={index}>
-                                            <div className="col-12 col-md-2 noPadding"><i
+                                            <div className="col-12 col-md-2 noPadding appIconBlock"><i
                                                 className={"appIcon--border fa " + item.icon}> </i></div>
                                             <div className="col-12 col-md-7 margin-top-15"><h5
                                                 onClick={() => this.viewApp(item)}>

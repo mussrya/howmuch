@@ -24,7 +24,7 @@ var Header = React.createClass(
             return (
                 <div className="row header">
                     <div className="col-xs-3">
-                        <a href="/"><h4>HowMuch</h4></a>
+                        <a href="/"><h3>HowMuch</h3></a>
                     </div>
                 </div>
             )

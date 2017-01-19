@@ -129,7 +129,7 @@ class EditApp extends React.Component {
     handleChange(event)
     {
         if (event.target.name === 'cost') {
-            this.setState({value: parseInt(event.target.value)});
+            this.setState({value: parseFloat(event.target.value)});
         } else {
             this.setState({title: event.target.value});
         }
@@ -143,7 +143,7 @@ class EditApp extends React.Component {
                 id: this.props.app.id,
                 name: this.props.app.name,
                 title: this.state.title,
-                cost: this.state.value,
+                cost: this.state.value.toFixed(2),
                 icon: this.props.app.icon,
                 active: false
             }

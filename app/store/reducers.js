@@ -8,7 +8,7 @@ export default (state = [], action) =>
                 ...state, {
                     id: action.id,
                     name: action.name,
-                    title: action.name,
+                    title: action.title,
                     cost: action.cost,
                     icon: action.icon,
                     active: false,
@@ -37,7 +37,7 @@ export default (state = [], action) =>
                 ...updatedApps, {
                     id: action.id,
                     name: action.name,
-                    title: action.name,
+                    title: action.title,
                     cost: action.cost,
                     icon: action.icon,
                     active: false,
@@ -64,7 +64,7 @@ export default (state = [], action) =>
                 {
                     id: action.id,
                     name: action.name,
-                    title: action.name,
+                    title: action.title,
                     cost: action.cost,
                     icon: action.icon,
                     active: true,
@@ -91,7 +91,7 @@ export default (state = [], action) =>
                 {
                     id: action.id,
                     name: action.name,
-                    title: action.name,
+                    title: action.title,
                     cost: action.cost,
                     icon: action.icon,
                     viewingApp: true

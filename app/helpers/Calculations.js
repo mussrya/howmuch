@@ -25,7 +25,8 @@ export default function (totalNumber)
     let topMoney = [
         {
             name: '1 Month',
-            value: summedTotal
+            value: (parseFloat(summedTotal) % 1 != 0) ? parseFloat(summedTotal).toFixed(1) : parseFloat(
+                    summedTotal)
         },
         {
             name: '3 Months',

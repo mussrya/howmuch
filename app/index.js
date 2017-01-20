@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Style = require('./main.css');
+
 import {Provider} from "react-redux";
 import {createStore} from "redux";
 import Store from './store/Store';

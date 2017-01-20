@@ -32,20 +32,6 @@ var Header = React.createClass(
     }
 );
 
-var Footer = React.createClass(
-    {
-        render: function ()
-        {
-            return (
-                <footer className="footer">
-                    <div className="container">
-                        <p className="text-muted">Copyright 2017</p>
-                    </div>
-                </footer>
-            )
-        }
-    }
-);
 
 var HomePage = React.createClass(
     {

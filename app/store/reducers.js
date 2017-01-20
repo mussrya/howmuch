@@ -9,7 +9,7 @@ export default (state = [], action) =>
                     id: action.id,
                     name: action.name,
                     title: action.title,
-                    cost: action.cost,
+                    cost: parseFloat(action.cost),
                     icon: action.icon,
                     active: false,
                     viewingApp: false
@@ -38,7 +38,7 @@ export default (state = [], action) =>
                     id: action.id,
                     name: action.name,
                     title: action.title,
-                    cost: action.cost,
+                    cost: parseFloat(action.cost),
                     icon: action.icon,
                     active: false,
                     viewingApp: true
@@ -65,7 +65,7 @@ export default (state = [], action) =>
                     id: action.id,
                     name: action.name,
                     title: action.title,
-                    cost: action.cost,
+                    cost: parseFloat(action.cost),
                     icon: action.icon,
                     active: true,
                     viewingApp: true
@@ -92,7 +92,7 @@ export default (state = [], action) =>
                     id: action.id,
                     name: action.name,
                     title: action.title,
-                    cost: action.cost,
+                    cost: parseFloat(action.cost),
                     icon: action.icon,
                     viewingApp: true
                 }

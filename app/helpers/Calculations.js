@@ -2,6 +2,7 @@ export default function (totalNumber)
 {
     let summedTotal;
     if (totalNumber.length > 0) {
+
         summedTotal = totalNumber.reduce(add, 0);
 
         function add(a, b)

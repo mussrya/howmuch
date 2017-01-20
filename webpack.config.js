@@ -1,8 +1,8 @@
 // In webpack.config.js
-let HtmlWebpackPlugin = require('html-webpack-plugin');
-let webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var webpack = require('webpack');
 
-let HTMLWebpackPluginConfig = new HtmlWebpackPlugin(
+var HTMLWebpackPluginConfig = new HtmlWebpackPlugin(
     {
         template: __dirname + '/app/index.html',
         filename: 'index.html',

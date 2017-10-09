@@ -4,7 +4,7 @@ A basic React, Redux and Webpack application for calculating how much services c
 
 ### URL
 The site can be viewed here:
-http://ryan-musselwhite.com/howmuch/
+http://ryanmusselwhite.com/howmuch/
 
 ### Running instructions
 Clone the repo
